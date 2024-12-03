@@ -2,9 +2,9 @@ package br.com.estudando.screemmatch.principal;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -86,6 +86,11 @@ public class Principal {
 //			        " Data lancamento: " + e.getLocalDate().format(formatador) +
 //			        " Episodios: " + e.getTitulo()
 //			));
+		
+		DoubleSummaryStatistics est = episodios.stream()
+			.filter(e -> e.getAvaliacao() > 0.0)
+			.collect(Collectors.summarizingDouble(Episodio:: getAvaliacao));
+		System.out.println(est);
 		
 	}
 
